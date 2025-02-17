@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-axum
+  labels:
+    app: simple-axum
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-axum
+  template:
+    metadata:
+      labels:
+        app: simple-axum
+    spec:
+      containers:
+      - name: simple-axum
+        image: ghcr.io/randallard/simple-axum:test  
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10  # Increased from 5 to give more startup time
+          periodSeconds: 10
+          timeoutSeconds: 3        # Added timeout
+          failureThreshold: 3      # Added failure threshold
+        livenessProbe:            # Added liveness probe
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20

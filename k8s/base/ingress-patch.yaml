@@ -1,0 +1,11 @@
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: simple-axum
+                port:
+                  number: 80
+            path: /simple-axum(/|$)(.*)
+            pathType: ImplementationSpecific
