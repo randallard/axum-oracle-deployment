@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: simple-axum
-        image: ghcr.io/randallard/simple-axum:test  
+        image: ghcr.io/randallard/simple-axum:main  
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
