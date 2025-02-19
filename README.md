@@ -1,10 +1,12 @@
 # axum-oracle-deployment
-deploying axum to oracle cloud
-
+run these first
 
     kubectl patch ingress main-ingress --patch-file k8s\base\ingress-patch.yaml
+    kubectl apply -f .\k8s\base\deployment.yaml
+    kubectl apply -f .\k8s\base\service.yaml
 
-Let me help you set up the GitHub Actions permissions and secrets needed for this deployment.
+
+## set up the GitHub Actions permissions and secrets
 
 1. First, enable GitHub Actions for the repository:
    - Go to your repository Settings
@@ -59,4 +61,3 @@ Here's a checklist of all required secrets:
 ✓ KUBE_CONFIG      (Kubernetes cluster config)
 ```
 
-Would you like me to explain how to obtain any of these specific values in more detail?
