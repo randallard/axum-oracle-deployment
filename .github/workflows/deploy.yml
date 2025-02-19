@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: randallard/simple-axum
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-deploy:
@@ -80,3 +80,16 @@ jobs:
         run: |
           kubectl set image deployment/simple-axum simple-axum=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build.outputs.digest }}
           kubectl rollout status deployment/simple-axum
+
+      - name: Debug deployment
+        if: failure()
+        run: |
+          echo "Checking pod status..."
+          kubectl get pods -l app=simple-axum
+          echo "\nChecking pod details..."
+          kubectl describe pods -l app=simple-axum
+          echo "\nChecking pod logs..."
+          for pod in $(kubectl get pods -l app=simple-axum -o name); do
+            echo "\nLogs for $pod:"
+            kubectl logs $pod --tail=50
+          done

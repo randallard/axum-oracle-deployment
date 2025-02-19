@@ -14,9 +14,11 @@ spec:
       labels:
         app: simple-axum
     spec:
+      imagePullSecrets:
+      - name: ghcr-secret
       containers:
       - name: simple-axum
-        image: ghcr.io/randallard/simple-axum:main
+        image: ghcr.io/randallard/axum-oracle-deployment:main
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
