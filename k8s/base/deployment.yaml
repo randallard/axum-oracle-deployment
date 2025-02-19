@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: simple-axum
-        image: ghcr.io/randallard/simple-axum:main  
+        image: ghcr.io/randallard/simple-axum:main
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -31,11 +31,11 @@ spec:
           httpGet:
             path: /
             port: 8080
-          initialDelaySeconds: 10  # Increased from 5 to give more startup time
+          initialDelaySeconds: 10
           periodSeconds: 10
-          timeoutSeconds: 3        # Added timeout
-          failureThreshold: 3      # Added failure threshold
-        livenessProbe:            # Added liveness probe
+          timeoutSeconds: 3
+          failureThreshold: 3
+        livenessProbe:
           httpGet:
             path: /
             port: 8080
