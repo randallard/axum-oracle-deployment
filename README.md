@@ -1,3 +1,7 @@
+# abandoned
+
+There might be some value in the deployment files here but the I'm moving towards node for deployment of leptos csr with tailwind
+
 # axum-oracle-deployment
 run these first
 
